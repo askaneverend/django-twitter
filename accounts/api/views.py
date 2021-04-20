@@ -31,7 +31,7 @@ class AccountViewSet(viewsets.ViewSet):
         """
         by default user name is admin, password is admin
         """
-        serializer = LoginSerializer(data=request)
+        serializer = LoginSerializer(data=request.date)
         if not serializer.is_valid():
             return Response({
                 "success": False,
@@ -51,6 +51,14 @@ class AccountViewSet(viewsets.ViewSet):
             "success": True,
             "user": UserSerializer(instance=user).data
         })
+
+    @action(methods=['POST'], detail=False)
+    def logout(self, request):
+        """
+        user log out
+        """
+        django_logout(request)
+        return Response({"success": True})
 
     @action(methods=['GET'], detail=False)
     def login_status(self, request):
@@ -81,11 +89,3 @@ class AccountViewSet(viewsets.ViewSet):
             'success': True,
             'user': UserSerializer(user).data
         })
-
-    @action(methods=['POST'], detail=False)
-    def logout(self, request):
-        """
-        user log out
-        """
-        django_logout(request)
-        return Response({"success": True})
