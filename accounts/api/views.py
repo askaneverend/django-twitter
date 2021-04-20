@@ -24,7 +24,7 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 class AccountViewSet(viewsets.ViewSet):
     permission_classes = (AllowAny,)
-    parser_classes = SignupSerializer
+    serializer_class = SignupSerializer
 
     @action(methods=['POST'], detail=False)
     def login(self, request):
