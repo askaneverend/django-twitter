@@ -17,7 +17,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         # TODO validate username is valid character
-        if User.objects.filer(username=data['username'].lower()).exsits():
+        if User.objects.filter(username=data['username'].lower()).exists():
             raise exceptions.ValidationError({
                 'message': 'This username has been occupied.'
             })

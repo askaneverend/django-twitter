@@ -31,7 +31,7 @@ class AccountViewSet(viewsets.ViewSet):
         """
         by default user name is admin, password is admin
         """
-        serializer = LoginSerializer(data=request.date)
+        serializer = LoginSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({
                 "success": False,
@@ -43,7 +43,7 @@ class AccountViewSet(viewsets.ViewSet):
         user = django_authenticate(username=username, password=password)
         if not user or user.is_anonymous:
             return Response({
-                "success":False,
+                "success": False,
                 "message": "username and password does not match"
             }, status=400)
         django_login(request, user)
