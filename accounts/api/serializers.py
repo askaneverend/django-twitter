@@ -25,6 +25,7 @@ class SignupSerializer(serializers.ModelSerializer):
             raise exceptions.ValidationError({
                 'message': 'This mail address has been occupied.'
             })
+        return data
 
     def create(self, validated_data):
         username = validated_data['username'].lower()
