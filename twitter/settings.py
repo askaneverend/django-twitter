@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # project app
     'accounts',
     'tweets',
+    'newsfeeds',
     "friendships",
 ]
 
